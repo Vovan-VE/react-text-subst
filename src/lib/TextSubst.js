@@ -227,7 +227,8 @@ export default class TextSubst extends Component {
         super(props);
 
         this._compile(props.text);
-        this._burn(this.props);
+
+        this._getter = this._getter.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -235,21 +236,17 @@ export default class TextSubst extends Component {
         if (text !== prevProps.text) {
             this._compile(text);
         }
-        this._burn(this.props);
     }
 
     _compile(text) {
         this._block = compile(text);
     }
 
-    _burn(props) {
-        this._getter = (name) => props[`v-${name}`];
+    _getter(name) {
+        return this.props[`v-${name}`];
     }
 
     render() {
-        const root = this._block;
-        const getter = this._getter;
-
-        return <Fragment>{root.renderChildren(getter)}</Fragment>;
+        return <Fragment>{this._block.renderChildren(this._getter)}</Fragment>;
     }
 }
