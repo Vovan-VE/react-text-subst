@@ -23,6 +23,6 @@ export default class TextSubst extends Component {
     render() {
         const {text} = this.props;
         const block = this.compile(text);
-        return <Fragment>{block.renderChildren(this._getter)}</Fragment>;
+        return <Fragment>{block.render(this.getter)}</Fragment>;
     }
 };

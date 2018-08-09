@@ -2,6 +2,7 @@ import React from "react";
 
 import Inline from './Inline';
 import Block from './Block';
+import RootBlock from './RootBlock';
 
 const reParse = /(@\[(\w+)[[\]]|]])/;
 
@@ -66,5 +67,5 @@ export default function compile(text) {
         }`);
     }
 
-    return new Block('/', children);
+    return new RootBlock(children);
 };
