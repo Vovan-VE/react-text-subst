@@ -2,6 +2,7 @@ react-text-subst
 ================
 
 [![Package Version](https://img.shields.io/npm/v/react-text-subst.svg)](https://www.npmjs.com/package/react-text-subst)
+[![Build Status](https://img.shields.io/travis/vovan-ve/react-text-subst.svg)](https://travis-ci.org/Vovan-VE/react-text-subst)
 
 How will you add i18n support in following cases?
 
