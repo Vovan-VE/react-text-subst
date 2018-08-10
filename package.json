@@ -1,6 +1,6 @@
 {
   "name": "react-text-subst",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Render placeholders from text with custom React components",
   "main": "dist/cjs.js",
   "keywords": [

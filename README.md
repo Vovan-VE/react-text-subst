@@ -2,7 +2,7 @@ react-text-subst
 ================
 
 [![Package Version](https://img.shields.io/npm/v/react-text-subst.svg)](https://www.npmjs.com/package/react-text-subst)
-[![Build Status](https://img.shields.io/travis/vovan-ve/react-text-subst.svg)](https://travis-ci.org/Vovan-VE/react-text-subst)
+[![Build Status](https://travis-ci.org/Vovan-VE/react-text-subst.svg)](https://travis-ci.org/Vovan-VE/react-text-subst)
 
 How will you add i18n support in following cases?
 
@@ -22,6 +22,8 @@ Sure, you just can split texts in parts, but that parts would be translated not 
 Here is a solution:
 
 ```jsx
+import TextSubst from 'react-text-subst';
+
 return <TextSubst
     text="Hello @[user]!"
     v-user={<span className="...">{username}</span>}
@@ -36,6 +38,13 @@ return <TextSubst
 ```
 
 Now you can simply add i18n to patterns and translate them.
+
+Install
+-------
+
+```sh
+npm i react-text-subst
+```
 
 Pattern syntax
 --------------
