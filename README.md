@@ -6,11 +6,11 @@ react-text-subst
 
 How will you add i18n support in following cases?
 
-```js
+```jsx
 return <span>Hello <span>{username}</span>!</span>;
 ```
 
-```js
+```jsx
 return <span>
     By clicking “Sign up”, you agree
     to our <a href="...">terms of service</a> and...
@@ -21,14 +21,14 @@ Sure, you just can split texts in parts, but that parts would be translated not 
 
 Here is a solution:
 
-```js
+```jsx
 return <TextSubst
     text="Hello @[user]!"
     v-user={<span className="...">{username}</span>}
 />;
 ```
 
-```js
+```jsx
 return <TextSubst
     text="By clicking “Sign up”, you agree to our @[link[terms of service]] and..."
     v-link={({children}) => <a href="...">{children}</a>}
@@ -59,7 +59,7 @@ The last will receive following property:
 
 *   `name` - corresponding node name (`foo` in example).
 
-```js
+```jsx
 return <TextSubst
     text="foo @[bar] lol @[baz]@[qux]."
     v-bar={something}
@@ -80,7 +80,7 @@ Block node can only render a component. It will receive following properties:
 
 Blocks can be nested.
 
-```js
+```jsx
 return <TextSubst
     text="lorem @[b[ipsum @[i[dolor]] sit]] amet @[i[consectep@[b[ture]]]]"
     v-b={({children}) => <b>{children}</b>}
@@ -91,7 +91,7 @@ return <TextSubst
 // </Fragment>
 ```
 
-```js
+```jsx
 return <TextSubst
     text="lorem @[foo[ipsum @[foo[dolor]] sit]] amet"
     v-foo={({children}) => <span>{children}</span>}
@@ -101,7 +101,7 @@ return <TextSubst
 // </Fragment>
 ```
 
-```js
+```jsx
 const Link = ({name, children}) => <a href={URL[name]}>{children}</a>;
 return <TextSubst
     text="lorem @[foo[ipsum]] dolor @[bar[sit]] amet"
