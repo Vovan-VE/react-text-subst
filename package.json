@@ -1,6 +1,6 @@
 {
   "name": "react-text-subst",
-  "version": "0.0.2",
+  "version": "0.1.0-alpha.0",
   "description": "Render placeholders from text with custom React components",
   "main": "dist/cjs.js",
   "keywords": [
@@ -25,27 +25,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "memoize-one": "^4.0.0",
-    "prop-types": "^15.6.1"
+    "memoize-one": "^5.0.4",
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-jest": "^19.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "cross-env": "^5.0.1",
-    "del-cli": "^1.0.0",
-    "jest": "^19.0.2",
-    "react": "~16.2.0",
-    "react-dom": "~16.2.0"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "core-js": "^3.1.3",
+    "cross-env": "^5.2.0",
+    "del-cli": "^1.1.0",
+    "jest": "^24.8.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": "^16.3"
   },
   "engines": {
     "node": ">= 6.9.0 || >= 8.9.0"
