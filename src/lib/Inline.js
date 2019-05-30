@@ -1,12 +1,13 @@
-import React, {Fragment} from "react";
-
+import React, {Fragment} from 'react';
 import Node from './Node';
 
 export default class Inline extends Node {
-    constructor(name) {
-        super(name);
-    }
-
+    /**
+     * Render the node
+     * @param {function(name: string): (React.ComponentClass|React.ReactNode)} getter
+     * @param {React.Key} [key]
+     * @return {React.ReactNode}
+     */
     render(getter, key) {
         const {name} = this;
         const value = getter(name);
@@ -22,4 +23,4 @@ export default class Inline extends Node {
         }
         return value;
     }
-};
+}

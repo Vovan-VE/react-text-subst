@@ -1,16 +1,32 @@
-import React from "react";
-
+import React from 'react';
 import Inline from './Inline';
 import Block from './Block';
 import RootBlock from './RootBlock';
 
 const reParse = /(@\[(\w+)[[\]]|]])/;
 
+/**
+ * Compile a text into a nodes tree
+ * @param {string} text
+ * @return {RootBlock}
+ */
 export default function compile(text) {
+    /**
+     * @type {Array<Node|React.ReactNode>}
+     */
     let children = [];
+    /**
+     * @type {Array<{children: Node|React.ReactNode, name: string}>}
+     */
     const stack = [];
+    /**
+     * @type {Object<string, Inline>}
+     */
     const inlines = {};
 
+    /**
+     * @param {string} name
+     */
     function push(name) {
         stack.push({children, name});
         children = [];
@@ -25,10 +41,17 @@ export default function compile(text) {
         children = prevChildren;
     }
 
+    /**
+     * @param {string} name
+     * @return {Inline}
+     */
     function inline(name) {
         return inlines[name] || (inlines[name] = new Inline(name));
     }
 
+    /**
+     * @type {string[]}
+     */
     const chunks = text.split(reParse);
 
     for (let i = 0, count = chunks.length; i < count; ++i) {
@@ -68,4 +91,4 @@ export default function compile(text) {
     }
 
     return new RootBlock(children);
-};
+}

@@ -1,24 +1,45 @@
-import React from "react";
-
+import React from 'react';
 import Node from './Node';
 
 export default class Block extends Node {
+    /**
+     * @type {Array<Node|React.ReactNode>}
+     */
+    children;
+
+    /**
+     * @param {string} name
+     * @param {Array<Node|React.ReactNode>} children
+     */
     constructor(name, children = []) {
         super(name);
         this.children = children;
     }
 
+    /**
+     * Render the node
+     * @param {function(name: string): (React.ComponentClass|React.ReactNode)} getter
+     * @param {React.Key} [key]
+     * @return {React.ReactNode}
+     */
     render(getter, key) {
         const {name} = this;
-        const value = getter(name);
-        if (typeof value !== 'function') {
+        const Component = getter(name);
+        if (typeof Component !== 'function') {
             throw new TypeError(`Renderer for '${name}' must be a function`);
         }
-        const children = this.renderChildren(getter);
-        const Component = value;
-        return <Component key={key} name={name}>{children}</Component>;
+        return (
+            <Component key={key} name={name}>
+                {this.renderChildren(getter)}
+            </Component>
+        );
     }
 
+    /**
+     * Render children nodes
+     * @param {function(name: string): (React.ComponentClass|React.ReactNode)} getter
+     * @return {React.ReactNode}
+     */
     renderChildren(getter) {
         const {children} = this;
 
@@ -27,18 +48,18 @@ export default class Block extends Node {
                 return null;
 
             case 1:
-                const child = children[0];
+                const [child] = children;
                 if (child instanceof Node) {
                     return child.render(getter);
                 }
                 return child;
         }
 
-        return this.children.map((child, index) => {
+        return children.map((child, index) => {
             if (child instanceof Node) {
                 return child.render(getter, index);
             }
             return child;
         });
     }
-};
+}

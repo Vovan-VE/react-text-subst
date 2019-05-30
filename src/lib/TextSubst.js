@@ -1,28 +1,28 @@
-import React, {Component, Fragment} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
-
 import compile from './compile';
 
-export default class TextSubst extends Component {
+export default class TextSubst extends PureComponent {
     static propTypes = {
         text: PropTypes.string.isRequired,
     };
 
-    constructor(props) {
-        super(props);
+    /**
+     * @param {string} text
+     * @return {RootBlock}
+     */
+    _compile = memoizeOne(compile);
 
-        this.getter = this.getter.bind(this);
-        this.compile = memoizeOne(compile);
-    }
-
-    getter(name) {
-        return this.props[`v-${name}`];
-    }
+    /**
+     *
+     * @param name
+     * @return {React.ComponentClass|React.ReactNode}
+     */
+    _getter = name => this.props[`v-${name}`];
 
     render() {
         const {text} = this.props;
-        const block = this.compile(text);
-        return <Fragment>{block.render(this.getter)}</Fragment>;
+        return this._compile(text).render(this._getter);
     }
-};
+}
