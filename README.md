@@ -55,6 +55,9 @@ Pattern text has following special tokens:
 *   `@[foo[` - start block node. Render a component wrapped around block's content.
 *   `]]` - end corresponding block node.
 
+> Notice: Since React has special props `key` and `ref`, you shouldn't use such names
+in pattern.
+
 Nodes
 -----
 
@@ -138,6 +141,8 @@ API
 
 *   `...` rest - value, element or component to render nodes with corresponding
     name.
+
+    > Notice: You cannot use React specific props like `key` or `ref` for values.
 
 License
 -------

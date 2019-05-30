@@ -21,4 +21,7 @@ Changelog
     </TextSubst>
     ```
 
+    > Notice: now you cannot use React specific props like `key`
+    or `ref` for values.
+
 *   **BC BREAK**: Update peer dependency for `react` to `^16.3`.
