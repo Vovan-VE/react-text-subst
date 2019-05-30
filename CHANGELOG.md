@@ -25,3 +25,7 @@ Changelog
     or `ref` for values.
 
 *   **BC BREAK**: Update peer dependency for `react` to `^16.3`.
+
+*   **BC BREAK**: Drop Node v6 support.
+
+*   Fix: move `prop-types` to `peerDependencies`.
