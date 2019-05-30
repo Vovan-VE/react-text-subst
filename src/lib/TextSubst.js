@@ -5,7 +5,7 @@ import compile from './compile';
 
 export default class TextSubst extends PureComponent {
     static propTypes = {
-        text: PropTypes.string.isRequired,
+        children: PropTypes.string,
     };
 
     /**
@@ -19,10 +19,14 @@ export default class TextSubst extends PureComponent {
      * @param name
      * @return {React.ComponentClass|React.ReactNode}
      */
-    _getter = name => this.props[`v-${name}`];
+    _getter = name => this.props[name];
 
     render() {
-        const {text} = this.props;
-        return this._compile(text).render(this._getter);
+        const {children} = this.props;
+        return (
+            children
+                ? this._compile(children).render(this._getter)
+                : null
+        );
     }
 }

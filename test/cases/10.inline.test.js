@@ -5,7 +5,7 @@ import T from '../../src/';
 describe('inline rendering', () => {
     it('null', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={null}/>
+            <T foo={null}>.@[foo].</T>
         )).toBe(render(
             <Fragment>..</Fragment>
         ));
@@ -13,7 +13,7 @@ describe('inline rendering', () => {
 
     it('number', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={42}/>
+            <T foo={42}>.@[foo].</T>
         )).toBe(render(
             <Fragment>.42.</Fragment>
         ));
@@ -21,7 +21,7 @@ describe('inline rendering', () => {
 
     it('string', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={'lorem'}/>
+            <T foo={'lorem'}>.@[foo].</T>
         )).toBe(render(
             <Fragment>.lorem.</Fragment>
         ));
@@ -29,7 +29,7 @@ describe('inline rendering', () => {
 
     it('string[]', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={['lorem', 'ipsum', 'dolor']}/>
+            <T foo={['lorem', 'ipsum', 'dolor']}>.@[foo].</T>
         )).toBe(render(
             <Fragment>.loremipsumdolor.</Fragment>
         ));
@@ -37,7 +37,7 @@ describe('inline rendering', () => {
 
     it('undefined', () => {
         expect(render(
-            <T text=".@[foo].@[bar]." v-foo={undefined}/>
+            <T foo={undefined}>.@[foo].@[bar].</T>
         )).toBe(render(
             <Fragment>...</Fragment>
         ));
@@ -45,7 +45,7 @@ describe('inline rendering', () => {
 
     it('element', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={<span>lorem</span>}/>
+            <T foo={<span>lorem</span>}>.@[foo].</T>
         )).toBe(render(
             <Fragment>.<span>lorem</span>.</Fragment>
         ));
@@ -53,7 +53,7 @@ describe('inline rendering', () => {
 
     it('component', () => {
         expect(render(
-            <T text=".@[foo]." v-foo={({name}) => <span>value of "{name}"</span>}/>
+            <T foo={({name}) => <span>value of "{name}"</span>}>.@[foo].</T>
         )).toBe(render(
             <Fragment>.<span>value of "foo"</span>.</Fragment>
         ));
@@ -62,7 +62,7 @@ describe('inline rendering', () => {
     it('component duplicate', () => {
         const C = ({name}) => <span>"{name}"</span>;
         expect(render(
-            <T text=".@[foo].@[bar]." v-foo={C} v-bar={C}/>
+            <T foo={C} bar={C}>.@[foo].@[bar].</T>
         )).toBe(render(
             <Fragment>.<span>"foo"</span>.<span>"bar"</span>.</Fragment>
         ));

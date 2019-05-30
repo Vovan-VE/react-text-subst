@@ -7,7 +7,7 @@ describe('block rendering', () => {
 
     it('empty', () => {
         expect(render(
-            <T text=".@[foo[]]." v-foo={C}/>
+            <T foo={C}>.@[foo[]].</T>
         )).toBe(render(
             <Fragment>.<C name="foo"/>.</Fragment>
         ));
@@ -15,7 +15,7 @@ describe('block rendering', () => {
 
     it('text', () => {
         expect(render(
-            <T text=".@[foo[Lorem ipsum]]." v-foo={C}/>
+            <T foo={C}>.@[foo[Lorem ipsum]].</T>
         )).toBe(render(
             <Fragment>.<C name="foo">Lorem ipsum</C>.</Fragment>
         ));
@@ -23,7 +23,7 @@ describe('block rendering', () => {
 
     it('inline', () => {
         expect(render(
-            <T text=".@[foo[Lorem @[bar] ipsum]]." v-foo={C} v-bar={<b>42</b>}/>
+            <T foo={C} bar={<b>42</b>}>.@[foo[Lorem @[bar] ipsum]].</T>
         )).toBe(render(
             <Fragment>.<C name="foo">Lorem <b>42</b> ipsum</C>.</Fragment>
         ));
@@ -31,7 +31,7 @@ describe('block rendering', () => {
 
     it('nested', () => {
         expect(render(
-            <T text=".@[foo[Lorem @[foo[ipsum]] @[bar[dolor]]]]." v-foo={C} v-bar={C}/>
+            <T foo={C} bar={C}>.@[foo[Lorem @[foo[ipsum]] @[bar[dolor]]]].</T>
         )).toBe(render(
             <Fragment>
                 .<C name="foo">Lorem <C name="foo">ipsum</C> <C name="bar">dolor</C></C>.

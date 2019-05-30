@@ -7,7 +7,7 @@ react-text-subst
 How will you add i18n support in following cases?
 
 ```jsx
-return <span>Hello <span>{username}</span>!</span>;
+<span>Hello <span>{username}</span>!</span>
 ```
 
 ```jsx
@@ -24,17 +24,17 @@ Here is a solution:
 ```jsx
 import TextSubst from 'react-text-subst';
 
-return <TextSubst
-    text="Hello @[user]!"
-    v-user={<span className="...">{username}</span>}
-/>;
+return (
+    <TextSubst user={<span className="...">{username}</span>}>
+        Hello @[user]!
+    </TextSubst>
+);
 ```
 
 ```jsx
-return <TextSubst
-    text="By clicking “Sign up”, you agree to our @[link[terms of service]] and..."
-    v-link={({children}) => <a href="...">{children}</a>}
-/>;
+<TextSubst link={({children}) => <a href="...">{children}</a>}>
+    By clicking “Sign up”, you agree to our @[link[terms of service]] and...
+</TextSubst>
 ```
 
 Now you can simply add i18n to patterns and translate them.
@@ -69,12 +69,13 @@ The last will receive following property:
 *   `name` - corresponding node name (`foo` in example).
 
 ```jsx
-return <TextSubst
-    text="foo @[bar] lol @[baz]@[qux]."
-    v-bar={something}
-    v-baz={<b>{something}</b>}
-    v-qux={({name}) => <b>value of {name}</b>}
-/>
+<TextSubst
+    bar={something}
+    baz={<b>{something}</b>}
+    qux={({name}) => <b>value of {name}</b>}
+>
+    foo @[bar] lol @[baz]@[qux].
+</TextSubst>
 // <Fragment>
 //     foo {something} lol <b>{something}</b><b>value of qux</b>
 // </Fragment>
@@ -90,21 +91,21 @@ Block node can only render a component. It will receive following properties:
 Blocks can be nested.
 
 ```jsx
-return <TextSubst
-    text="lorem @[b[ipsum @[i[dolor]] sit]] amet @[i[consectep@[b[ture]]]]"
-    v-b={({children}) => <b>{children}</b>}
-    v-i={({children}) => <i>{children}</i>}
-/>;
+<TextSubst
+    b={({children}) => <b>{children}</b>}
+    i={({children}) => <i>{children}</i>}
+>
+    lorem @[b[ipsum @[i[dolor]] sit]] amet @[i[consectep@[b[ture]]]]
+</TextSubst>
 // <Fragment>
 //     lorem <b>ipsum <i>dolor</i> sit</b> amet <i>consectep<b>ture</b></i>
 // </Fragment>
 ```
 
 ```jsx
-return <TextSubst
-    text="lorem @[foo[ipsum @[foo[dolor]] sit]] amet"
-    v-foo={({children}) => <span>{children}</span>}
-/>;
+<TextSubst foo={({children}) => <span>{children}</span>}>
+    lorem @[foo[ipsum @[foo[dolor]] sit]] amet
+</TextSubst>
 // <Fragment>
 //     lorem <span>ipsum <span>dolor</span> sit</span> amet
 // </Fragment>
@@ -112,11 +113,11 @@ return <TextSubst
 
 ```jsx
 const Link = ({name, children}) => <a href={URL[name]}>{children}</a>;
-return <TextSubst
-    text="lorem @[foo[ipsum]] dolor @[bar[sit]] amet"
-    v-foo={Link}
-    v-bar={Link}
-/>;
+return (
+    <TextSubst foo={Link} bar={Link}>
+        lorem @[foo[ipsum]] dolor @[bar[sit]] amet
+    </TextSubst>
+);
 // <Fragment>
 //     lorem <a href={URL.foo}>ipsum</a> dolor <a href={URL.bar}>sit</a> amet
 // </Fragment>
@@ -127,8 +128,16 @@ API
 
 ### Properties
 
-*   `text` - pattern string to render;
-*   `v-foo` - value, element or component to render nodes with name `foo`.
+*   `children` - pattern string to render, only single string is acceptable:
+
+    ```jsx
+    <TextSubst>Lorem ipsum dolor</TextSubst>
+    <TextSubst>{'Lorem ipsum dolor'}</TextSubst>
+    <TextSubst>{i18n('Lorem ipsum dolor')}</TextSubst>
+    ```
+
+*   `...` rest - value, element or component to render nodes with corresponding
+    name.
 
 License
 -------
