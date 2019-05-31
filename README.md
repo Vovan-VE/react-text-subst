@@ -12,10 +12,10 @@ How will you add i18n support in following cases?
 ```
 
 ```jsx
-return <span>
+<span>
     By clicking “Sign up”, you agree
     to our <a href="...">terms of service</a> and...
-</span>;
+</span>
 ```
 
 Sure, you just can split texts in parts, but that parts would be translated not properly.
