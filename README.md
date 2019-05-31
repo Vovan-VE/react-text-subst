@@ -25,7 +25,7 @@ Here is a solution:
 import TextSubst from 'react-text-subst';
 
 return (
-    <TextSubst user={<span className="...">{username}</span>}>
+    <TextSubst user={<span>{username}</span>}>
         Hello @[user]!
     </TextSubst>
 );
@@ -43,7 +43,7 @@ Install
 -------
 
 ```sh
-npm i react-text-subst
+npm i --save react-text-subst
 ```
 
 Pattern syntax
@@ -79,9 +79,9 @@ The last will receive following property:
 >
     foo @[bar] lol @[baz]@[qux].
 </TextSubst>
-// <Fragment>
+// <>
 //     foo {something} lol <b>{something}</b><b>value of qux</b>
-// </Fragment>
+// </>
 ```
 
 ### Block `@[foo[...]]`
@@ -100,18 +100,18 @@ Blocks can be nested.
 >
     lorem @[b[ipsum @[i[dolor]] sit]] amet @[i[consectep@[b[ture]]]]
 </TextSubst>
-// <Fragment>
+// <>
 //     lorem <b>ipsum <i>dolor</i> sit</b> amet <i>consectep<b>ture</b></i>
-// </Fragment>
+// </>
 ```
 
 ```jsx
 <TextSubst foo={({children}) => <span>{children}</span>}>
     lorem @[foo[ipsum @[foo[dolor]] sit]] amet
 </TextSubst>
-// <Fragment>
+// <>
 //     lorem <span>ipsum <span>dolor</span> sit</span> amet
-// </Fragment>
+// </>
 ```
 
 ```jsx
@@ -121,9 +121,9 @@ return (
         lorem @[foo[ipsum]] dolor @[bar[sit]] amet
     </TextSubst>
 );
-// <Fragment>
+// <>
 //     lorem <a href={URL.foo}>ipsum</a> dolor <a href={URL.bar}>sit</a> amet
-// </Fragment>
+// </>
 ```
 
 API

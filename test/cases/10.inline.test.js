@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import render from '../cases.setup';
 import T from '../../src/';
 
@@ -7,7 +7,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={null}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>..</Fragment>
+            <>..</>
         ));
     });
 
@@ -15,7 +15,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={42}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>.42.</Fragment>
+            <>.42.</>
         ));
     });
 
@@ -23,7 +23,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={'lorem'}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>.lorem.</Fragment>
+            <>.lorem.</>
         ));
     });
 
@@ -31,7 +31,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={['lorem', 'ipsum', 'dolor']}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>.loremipsumdolor.</Fragment>
+            <>.loremipsumdolor.</>
         ));
     });
 
@@ -39,7 +39,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={undefined}>.@[foo].@[bar].</T>
         )).toBe(render(
-            <Fragment>...</Fragment>
+            <>...</>
         ));
     });
 
@@ -47,7 +47,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={<span>lorem</span>}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>.<span>lorem</span>.</Fragment>
+            <>.<span>lorem</span>.</>
         ));
     });
 
@@ -55,7 +55,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={({name}) => <span>value of "{name}"</span>}>.@[foo].</T>
         )).toBe(render(
-            <Fragment>.<span>value of "foo"</span>.</Fragment>
+            <>.<span>value of "foo"</span>.</>
         ));
     });
 
@@ -64,7 +64,7 @@ describe('inline rendering', () => {
         expect(render(
             <T foo={C} bar={C}>.@[foo].@[bar].</T>
         )).toBe(render(
-            <Fragment>.<span>"foo"</span>.<span>"bar"</span>.</Fragment>
+            <>.<span>"foo"</span>.<span>"bar"</span>.</>
         ));
     });
 });

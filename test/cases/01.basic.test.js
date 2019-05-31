@@ -1,16 +1,16 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import render from '../cases.setup';
 import T from '../../src/';
 
 describe('basic rendering', () => {
     it('empty text', () => {
         expect(render(<T/>))
-            .toBe(render(<Fragment/>));
+            .toBe(render(<></>));
     });
 
     it('text only', () => {
         expect(render(<T>Lorem ipsum</T>))
-            .toBe(render(<Fragment>Lorem ipsum</Fragment>));
+            .toBe(render(<>Lorem ipsum</>));
     });
 
     it('simple cases', () => {
@@ -22,7 +22,7 @@ describe('basic rendering', () => {
                 Lorem @[foo] ipsum @[bar[dolor]] sit
             </T>
         )).toBe(render(
-            <Fragment>Lorem <b>Foo</b> ipsum <i>dolor</i> sit</Fragment>
+            <>Lorem <b>Foo</b> ipsum <i>dolor</i> sit</>
         ));
     });
 });
