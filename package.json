@@ -14,7 +14,10 @@
   "author": "Vovan-VE <vovan-ve@yandex.ru>",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "start": "npm run build -- -w",
