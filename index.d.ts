@@ -11,7 +11,7 @@ interface BlockItemComponentProps extends InlineItemComponentProps {
 
 type InlineItemValue = React.ComponentType<InlineItemComponentProps> | React.ReactNode;
 type BlockItemValue = React.ComponentType<BlockItemComponentProps>;
-type ItemValue = React.ReactNode | InlineItemValue | BlockItemValue;
+type ItemValue = InlineItemValue | BlockItemValue;
 
 interface TextSubstProps {
     children?: string | null | undefined;
