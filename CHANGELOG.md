@@ -1,9 +1,8 @@
 Changelog
 =========
 
-1.0.0-beta.1
+1.0.0
 -----
-
 
 *   **BC BREAK**: API. The property `text` replaced with children
     and properties for values now must be without `v-` prefix as is:
