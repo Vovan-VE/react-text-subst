@@ -38,4 +38,18 @@ describe('block rendering', () => {
             </>
         ));
     });
+
+    it('node only', () => {
+        expect(render(
+            <T foo={C}>@[foo[Lorem ipsum]]</T>
+        )).toBe(render(
+            <C name="foo">Lorem ipsum</C>
+        ));
+    });
+
+    it('bad block', () => {
+        expect(() => render(
+            <T foo={<div>fail</div>}>.@[foo[Lorem ipsum]].</T>
+        )).toThrow(new TypeError("Renderer for 'foo' must be a function"));
+    });
 });
