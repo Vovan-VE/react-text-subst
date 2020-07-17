@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.1
+-----
+
+*   Update dev dependencies to fix security issues.
+
 1.0.0
 -----
 
